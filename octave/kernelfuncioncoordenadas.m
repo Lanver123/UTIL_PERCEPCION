@@ -13,18 +13,18 @@ function[] = kernelperceptron(trset,clases)
   # Cálculo de Gramm
   gramm = zeros(rows(trset), rows(trset));
   for i=1:rows(trset)
-    for j=1:(rows(trset)-i+1)
+    for j=1:i
       # Distancia de Hamming, solo si la piden
       igu = (trset(i,:) == trset(j,:));
       dxy = sum(ones(1,2) - igu);
       # Valor para K = 1 / (dxy + 1)
-      gramm(i,j) = 1/(dxy+1);
+      #gramm(i,j) = 1/(dxy+1);
       
       # Valor para K = exp(x'y)
-      # gramm(i,j) = e^(trset(j,:)*trset(i,:)');
+      #gramm(i,j) = e^(trset(j,:)*trset(i,:)');
       
       # Valor para K = ???
-      # examen
+      gramm(i,j) = (trset(i,:)*trset(j,:)'+3)^2
       
       gramm(j,i) = gramm(i,j);
     endfor
